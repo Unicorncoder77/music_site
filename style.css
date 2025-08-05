@@ -1,0 +1,486 @@
+/* Reset */
+@import url(
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* May edit font family*/
+:root{
+    --background-color: #F2EBD7;
+    --header-color: #FFC1B1;
+    --nav-bar-links-color: #9BC99E;
+    --all-text-color: black;
+    --card-header: #B75E48;
+    --card-link: #5E9C91;
+    --footer-color: #FFC1B1;
+    --article-background-color: #FFC1B1;
+    /* #FF8465*/
+
+}
+
+.darkMode {
+    --background-color: #D6A585;;
+    --header-color: #A36D6D;
+    --all-text-color: white;
+    --nav-bar-links-color: #98A896;
+    --card-header: #85585C;
+    --card-link: #9698A8;
+    --footer-color: #A36D6D;
+    --article-background-color: #A36D6D;
+}
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    /*background-color: #F2EBD7;
+    color: black; */
+    background-color: var(--background-color);
+    color: var(--all-text-color);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.article-grid .article-card-read {
+    display: none;
+}
+.readMore {
+    background-color: var(--article-background-color);
+    border: none;
+    color: var(--card-link);
+}
+
+.article-card-read.toggle{
+    display: block;
+}
+
+header {
+    background-color: var(--header-color);
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+   /* color: var(--nav-bar-links-color);*/
+    color: #4D5D53;
+    margin: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.darkModeToggle {
+    background-color: var(--header-color);
+    border: none;
+    padding: 10px;
+}
+
+
+.mission {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+
+}
+
+
+.mission h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.articles {
+    padding: 2rem;
+}
+
+.articles h2 {
+    padding: 2rem;
+}
+.article-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.article-card {
+    background-color: var(--article-background-color);
+    padding: 1rem;
+    border-radius: 10px;
+    /* Comment out / alter if this isn't what i want*/
+    flex: 1 1 calc(33% - 1rem);
+    box-shadow: 0 0 10px var(--all-text-color);
+}
+
+.article-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.article-card h3 {
+    color: var(--card-header);
+}
+
+.article-card a {
+    color: var(--card-link);
+    text-decoration: none;
+}
+
+footer {
+    background-color: var(--footer-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.creator {
+    text-align: center;
+}
+
+.creator button {
+    border: none;
+    color: black;
+    background-color: #9BC99E;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.creator a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.search {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search input[type="text"] {
+    padding: 6px;
+    margin-right: 10px;
+    border: none;
+    font-size: 17px;
+    border-radius: 4px;
+}
+
+.search button {
+    padding: 6px 10px;
+    background: white;
+    color: #FFC1B1;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.search button i {
+    font-size: 18px;
+}
+
+.settings {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.container {
+    height: 600px;
+    width: 500px;
+    background-color: var(--background-color);
+    box-shadow: var(--all-text-color);
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px;
+}
+
+.loginHeader {
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+.btns {
+    height: 60px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 30px var(--all-text-color);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loginBtn, .signupBtn {
+    font-size: 22px;
+    border: none;
+    outline: none;
+    /* may change to the normal background color*/
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.slider {
+    height: 80px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #779777, #C3CBA8);
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+    left: 250px;
+}
+
+.forms {
+    height: 500px;
+    width: 1000px;
+    padding: 20px 0;
+    display: flex;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    left: 0px;
+}
+
+.forms-move{
+    left: -500px;
+}
+
+.loginBox, .signupBox {
+    height: 100%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+}
+
+.loginBox {
+    gap: 50px;
+}
+
+.signupBox {
+    gap: 30px;
+}
+
+
+.ele {
+    height: 60px;
+    width: 400px;
+    outline: none;
+    border: none;
+    color: black;
+    background-color: var(--background-color);
+    border-radius: 50px;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.clkbtn {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #779777, #C3CBA8);
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+/* add responsiveness later*/
+@media screen and (max-width: 650px) {
+    .container {
+        height: 600px;
+        width: 300px;
+    }
+
+    .btns {
+        height: 50px;
+        width: 200px;
+        margin: 20px auto;
+    }
+    .loginBtn,
+    .signupBtn {
+        font-size: 19px;
+    }
+    .slider {
+        height: 50px;
+        width: 100px;
+        left: 50px;
+    }
+    .moveslider {
+        left: 150px;
+    }
+    .forms {
+        height: 500px;
+        width: 600px;
+    }
+    .forms-move {
+        left: -300px;
+    }
+    .loginBox,
+    .signupBox {
+        height: 100%;
+        width: 300px;
+    }
+    .ele {
+        height: 50px;
+        width: 250px;
+        font-size: 15px;
+    }
+    .clkbtn {
+        height: 50px;
+        width: 130px;
+        font-size: 19px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .container {
+        height: 600px;
+        width: 250px;
+    }
+
+    .btns {
+        height: 50px;
+        width: 200px;
+        margin: 20px auto;
+    }
+    .loginBtn,
+    .signupBtn {
+        font-size: 19px;
+    }
+    .slider {
+        height: 50px;
+        width: 100px;
+        left: 27px;
+    }
+    .moveslider {
+        left: 127px;
+    }
+    .forms {
+        height: 500px;
+        width: 500px;
+    }
+    .forms-move {
+        left: -250px;
+    }
+
+    .loginBox,
+    .signupBox {
+        height: 100%;
+        width: 250px;
+    }
+
+    .ele {
+        height: 50px;
+        width: 220px;
+        font-size: 15px;
+    }
+
+    .clkbtn {
+        height: 50px;
+        width: 130px;
+        font-size: 19px;
+    }
+}
+
+.userWelcome {
+        text-align: center;
+}
+.logout {
+    text-align: center;
+}
+
+
+.logout input[type=submit] {
+    font-size: 16px;
+    border: none;
+    color: black;
+    background-color: #9BC99E;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+
+.firstName, .lastName, .penNameSign, .emailSign, .pswSign, .pswSignRepeat {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+
+}
+
+.firstName:focus, .lastName:focus, .penNameSign:focus, .emailSign:focus, .pswSign:focus, .pswSignRepeat:focus{
+   background-color: #ddd;
+   outline: none;
+
+}
+
+.signLine {
+  border: 1px solid #F2EBD7;
+  margin-bottom: 25px;
+
+}
+
+.cancelbtnCreatorSign, signupbtnCreatorSign{
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.cancelbtnCreatorSign:hover {
+  opacity:1;
+}
+
+.signupbtnCreatorSign:hover {
+  opacity: 1;
+}
+
+.cancelbtnCreatorSign  {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+.cancelbtnCreatorSign, .signupbtnCreatorSign{
+  float: left;
+  width: 50%;
+}
+
+
+.creatorLoginBox {
+  padding: 16px;
+}
+
+.clearfixCreatorSign::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.fillOut {
+  text-align: center;
+}
