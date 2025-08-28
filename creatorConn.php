@@ -120,6 +120,15 @@ class CreatorAccount {
         
     }
 
+    public function getCreator($creator_id){
+        $stmt = $this->dbconn->prepare("SELECT creator_penname
+        FROM creators
+        WHERE creator_id = :creator_id");
+
+        $stmt->execute([':creator_id' => $creator_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }
 

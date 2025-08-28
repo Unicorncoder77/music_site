@@ -67,7 +67,7 @@ $creatorID = $creator['creator_id'];
             }
         </style>
     </head>
- Add in the Javascript code to generate the nav bar automatically
+<!-- Add in the Javascript code to generate the nav bar automatically -->
     <body>
         <header>
          <h1> The Experience </h1>
@@ -99,7 +99,7 @@ $creatorID = $creator['creator_id'];
         <h1 class="userWelcome"> Welcome Back <?php echo htmlspecialchars($_SESSION['creator']);?></h1>
         <hr>
 <!-- Add dynamic route to adding the categories-->
-        <h2> If you're submitting a new article then submit below: </h2>
+        <h2> Submit your new article below: </h2>
         <div class="formCenter">
             <form action="#"class="newArticle">
                 <label for="articleTitle">Article Title Name: </label> 
@@ -113,7 +113,7 @@ $creatorID = $creator['creator_id'];
                     <option value="5">Spanish</option>
                     <option value="6">K-pop</option>
                 </select> <br>
-
+        <!-- Add tinymce-->
                 <label for="articleContent"> Content:</label> <br />
                 <textarea name="articleContent"></textarea> <br />
                 <input type="submit" name="contentSubmit" value="Submit">
