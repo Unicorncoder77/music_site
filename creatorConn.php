@@ -21,7 +21,7 @@ class CreatorAccount {
     }
     public function getCreatorInfo($penName){
        // $penName = strtolower($penName);
-        $query = 'SELECT * FROM creators WHERE creator_penname = :penName';
+        $query = 'SELECT * FROM creators WHERE LOWER(creator_penname) = :penName';
         $stmt = $this->dbconn->prepare($query);
         $stmt->bindValue(':penName', $penName);
 
@@ -42,6 +42,7 @@ class CreatorAccount {
         else {
             return false;
         }
+        $this->dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     public function createAccount($firstName, $lastName, $penName, $email, $password){
         $creator = $this->getCreatorInfo($penName);
@@ -126,7 +127,28 @@ class CreatorAccount {
         WHERE creator_id = :creator_id");
 
         $stmt->execute([':creator_id' => $creator_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function creatorLogin(){
+        session_start();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $penName = strtolower($_POST['penName']);
+            $password = $_POST['password'];
+
+            $creator = $this->getCreatorInfo($penName);
+            if ($creator && $this->verifyPassword($penName, $password)) {
+                $_SESSION['creator_id'] = $creator['creator_id'];
+                $_SESSION['creator'] = $creator['creator_penname'];
+
+                header("Location: creatorDashboard.php");
+                exit();
+            }
+            else {
+                echo "Invalid";
+            }
+        }
     }
 
 

@@ -8,14 +8,21 @@ session_start();
 require __DIR__ . '/../hiphop_website/private/config.php';
 
 require 'creatorConn.php';
+require 'articleConn.php';
 
 // Should merge creatorConn and loginConn at some point or figure out if it would be the best option
 
-$penName = $_SESSION['creator'];
+
+$penName = strtolower($_SESSION['creator']);
 $creatorAccount = new CreatorAccount();
 
 $creator = $creatorAccount->getCreatorInfo($penName);
 $creatorID = $creator['creator_id'];
+
+$_SESSION['creator_id'] = $creator['creator_id'];
+
+$newArticle = new Article($config);
+$categories = $newArticle->fetchCategories();
 
 
 ?>
@@ -74,7 +81,7 @@ $creatorID = $creator['creator_id'];
             <nav class="homeNav" id="navigation-bar">
                 <a href="index.php">Home</a>
                 <a href="#">About</a>
-                <a href="#">Articles</a>
+                <a href="articles.php">Articles</a>
                 <a href="#">Reviews</a>
                 <a href="#">Contact</a>
                 <a href="logout.php">Logout</a>
@@ -101,17 +108,18 @@ $creatorID = $creator['creator_id'];
 <!-- Add dynamic route to adding the categories-->
         <h2> Submit your new article below: </h2>
         <div class="formCenter">
-            <form action="#"class="newArticle">
+            <form action="articleProcess.php"class="newArticle" method="POST">
                 <label for="articleTitle">Article Title Name: </label> 
                 <input type="text" id="articleTitle" name="articleTitle"> <br/>
                 <label for="articleCategory"> Choose your category: </label> <br />
                 <select id="category" name="category">
-                    <option value="1">Hip-Hop</option> 
-                    <option value="2">Pop</option> 
-                    <option value="3">Rock</option>
-                    <option value="4">Alternative</option>
-                    <option value="5">Spanish</option>
-                    <option value="6">K-pop</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?= htmlspecialchars($category['category_id']) ?>">
+                            <?= htmlspecialchars($category['category_name']) ?>
+                        </option>
+
+                    <?php endforeach; ?>
+                
                 </select> <br>
         <!-- Add tinymce-->
                 <label for="articleContent"> Content:</label> <br />

@@ -38,7 +38,7 @@ $userID = $user['user_id'];
             <nav class="homeNav" id="navigation-bar">
                 <a href="index.php">Home</a>
                 <a href="#">About</a>
-                <a href="#">Articles</a>
+                <a href="articles.php">Articles</a>
                 <a href="#">Reviews</a>
                 <a href="#">Contact</a>
                 <a href="logout.php">Logout</a>

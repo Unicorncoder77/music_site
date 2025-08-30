@@ -7,11 +7,24 @@ error_reporting(E_ALL);
 require 'articleConn.php';
 require 'creatorConn.php';
 
-$article = new Article();
-$newCreator = new CreatorAccount();
+require_once  __DIR__ . '/../hiphop_website/private/config.php';
+
+try {
+    $newArticle = new Article($config);
+    $newCreator = new CreatorAccount();
+
+    $allArticles = $newArticle->fetchall();
+
+}
+catch (PDOException $e) {
+    echo "<pre>PDO Error: " . $e->getMessage() . "</pre>";
+    exit;
+}
+//$newArticle = new Article($config);
+//$newCreator = new CreatorAccount();
 //$authorId = $article->getByCreator($article['creator_id']);
 
-$allArticles = $article->fetchall();
+//$allArticles = $newArticle->fetchall();
 
 /*foreach ($allArticles as $article) {
     $creator = $newCreator->getCreator($article['creator_id']);
@@ -56,14 +69,22 @@ $allArticles = $article->fetchall();
         </header> 
         <h1> Welcome to Our Article Site! Read Our Various Articles Below!</h1>
         <?php 
-            foreach ($articles as $article):
+            foreach ($allArticles as $article):
                 $creator = $newCreator->getCreator($article['creator_id']);
+
+                if (!$creator) {
+                    $penName = "Unknown Author";
+                } 
+                else {
+                    $penName = $creator['creator_penname'];
+                }
         ?>
         <article>
-            <h2> <?= htmlspecialchars($article['title']) ?></h2>
+            <h2> <?= htmlspecialchars($article['article_title']) ?></h2>
 
-            <p>by <?= htmlspecialchars($creator['creator_penname'])?></p>
-            <p><?= nl2br(htmlspecialchars($article['content']))?></p>
+            <p>by <?= htmlspecialchars($penName)?></p>
+            
+            <p><?= nl2br(htmlspecialchars($article['article_contents']))?></p>
         </article>
 
         <?php endforeach ?>
