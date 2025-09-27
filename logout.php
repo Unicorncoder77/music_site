@@ -34,26 +34,10 @@ if (isset($_POST['logout'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <header>
-                <h1> The Experience </h1>
-                <nav class="homeNav" id="navigation-bar">
-                        <a href="index.php">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Articles</a>
-                        <a href="#">Reviews</a>
-                        <a href="#">Contact</a>
-                        <a href="#">Your Reviews</a>
-                        <a href="#">Your Saved Articles</a>
-                        <div class="search">
-                                <form action="#">
-                                        <input type="text" placeholder="Search" name="search">
-                                        <button type="submit">
-                                                <i class="fa fa-search"></i>
-                                        </button>
-                                </form>
-                        </div>
-                </nav>
-        </header>
+        <script src="script.js"> </script>
+        <div id="header"></div>
+
+        
         <h1 class="userWelcome"> Are you sure you wish to log out? </h1>
         <section class="logout">
                 <form method="post">

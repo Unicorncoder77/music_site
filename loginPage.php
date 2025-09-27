@@ -17,30 +17,10 @@ error_reporting(E_ALL);
        <!-- <script src="script.js"></script> -->
     </head>
     <body>
-        <header>
-            <h1> The Experience </h1>
-            <nav class="homeNav" id="navigation-bar">
-                <a href="index.php">Home</a>
-                <a href="#">About</a>
-                <a href="#">Articles</a>
-                <a href="#">Reviews</a>
-                <a href="#">Contact</a>
-                <a href="loginPage.php">Login</a>
-                <div class="search">
-                    <form action="#">
-                        <input type="text" placeholder="Search" name="search">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="settings">
-                    <button class="darkModeToggle" id="darkModeToggle" onclick="darkMode()">
-                        <i class="fa fa-moon-o fa-2x" ></i>
-                    </button>
-                </div>
-            </nav>
-        </header>
+       <script src="script.js"> </script>
+        <div id="header"></div>
+
+        
         <h1 class="loginHeader"> Log In or Register</h1>
         <div class="container">
             <div class="slider">

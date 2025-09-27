@@ -33,34 +33,8 @@ $userID = $user['user_id'];
 
     </head>
     <body>
-        <header>
-         <h1> The Experience </h1>
-            <nav class="homeNav" id="navigation-bar">
-                <a href="index.php">Home</a>
-                <a href="#">About</a>
-                <a href="articles.php">Articles</a>
-                <a href="#">Reviews</a>
-                <a href="#">Contact</a>
-                <a href="logout.php">Logout</a>
-                <a href="dashboard.php"> Dashboard </a>
-                <!--<a href="#">Your Reviews</a>
-                <a href="#">Your Saved Articles</a>-->
-                <div class="search">
-                    <form action="#">
-                        <input type="text" placeholder="Search" name="search">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="settings">
-                    <button class="darkModeToggle" id="darkModeToggle" onclick="darkMode()">
-                        <i class="fa fa-moon-o fa-2x" ></i>
-                    </button>
-                </div>
-            </nav>
-        </header>
-                
+        <script src="script.js"> </script>
+        <div id="header"></div>
 
             <h1 class="userWelcome"> Welcome Back <?php echo htmlspecialchars($_SESSION['user']); ?></h1>
             <hr>

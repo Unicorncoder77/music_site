@@ -1,17 +1,29 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require 'articleConn.php';
+require 'creatorConn.php';
+
+require_once  __DIR__ . '/../hiphop_website/private/config.php';
 
 
 session_start();
-//$user = $_SESSION['user'];
 
+try {
+    $newArticle = new Article($config);
+    $newCreator = new CreatorAccount();
 
+    
 
-/*if(isset($_SESSION['user'])){
-    print ("Welcome back ");
 }
-else {
-    print("Hey you're not logged in!");
-}*/
+catch (PDOException $e) {
+    echo "<pre>PDO Error: " . $e->getMessage() . "</pre>";
+    exit;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,47 +39,7 @@ else {
    </head>
     <body>
         <script src="script.js"> </script>
-        <header>
-            <h1> The Experience</h1>
-<!-- Navigation bars must be linked properly-->
-            <nav class="homeNav" id="navigation-bar">
-                <a href="index.php">Home</a>
-                <a href="#">About</a>
-                <a href="articles.php">Articles</a>
-                <a href="#">Reviews</a>
-                <a href="#">Contact</a>
-                <?php if (isset($_SESSION['user'])): ?>
-                    <a href="dashboard.php">Dashboard </a>
-                    <a href="logout.php">Logout</a>
-                <?php else: ?>
-                    <a href="loginPage.php">Login</a>
-                <?php endif; ?>
-                <?php if (isset($_SESSION['creator'])): ?>
-                    <a href="creatorDashboard.php">Dashboard </a>
-                    <a href="logout.php">Logout</a>
-                <?php else: ?>
-                    <a href="loginPage.php">Login</a>
-                <?php endif; ?>
-                <div class="search">
-<!-- Add actual action to the form-->
-                        <form action="#">
-                                <input type="text" placeholder="Search" name="search">
-                                <button type="submit">
-                                        <i class="fa fa-search"></i>
-                                </button>
-                        </form>
-                </div>
-<!-- Add a search feature soon-->
-
-
-                <div class="settings">
-                <button class="darkModeToggle" onclick="darkModeToggle()">
-                        <i class="fa fa-moon-o fa-2x"></i>
-                </button>
-                </div>
-            </nav>
-
-        </header>
+        <div id="header"></div>
 
 <!-- If I still like the vine idea, add vines here-->
 
@@ -82,26 +54,22 @@ else {
     <section class="articles">
         <h2> Our Featured Articles</h2>
         <div class="article-grid">
-          <div class="article-card">
-                <h3> From The Grammy's To Gag City </h3>
-                <p>
-                    Nicki Minaj is often seen as a legend in her own right.
-                    She kicked in the door that was unlocked for her to open by her predecessors.
-                    Her creativity and flow within the scene was something new and exciting that many could endorse and support.
+          
+            <?php 
+                $topArticles = $newArticle->topThree();
+                foreach ($topArticles as $article): 
+            ?>
+                <div class="article-card">
+                <h3>
+                    <a href="oneArticle.php?id=<?= $article['article_id'] ?>">
+                        <?= htmlspecialchars($article['article_title']) ?>
+                    </a>
+                </h3>
+                <p> 
+                    <?= nl2br(htmlspecialchars(substr($topArticles['article_contents'], 0, 150)))?>
                 </p>
-
-
-<!-- Links will not work for read more-->
-
-                    <div class="article-card-read">
-                    <p>
-                        Female rappers like Doja Cat have stated Nicki Minaj as her direct inspiration with many songs paying homage to her in some capacity.
-                        Especially in “Get into it Yuh” where she emulates a flow Nicki Minaj had used in the past with the song “Massive Attack” (Chris Mench, 2021).
-                    </p>
-                <!-- Make a button to go to the article page -->
-
-                    </div>
-                    <button class="readMore">Read More</button>
+                </div>
+            <?php endforeach ?>
                 </div>
                 <div class="article-card">
                 <h3> The Evolution of the 808 Beat</h3>

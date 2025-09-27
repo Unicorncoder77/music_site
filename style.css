@@ -124,7 +124,7 @@ nav a {
 }
 
 .article-card a {
-    color: var(--card-link);
+    color: var(--card-header);
     text-decoration: none;
 }
 

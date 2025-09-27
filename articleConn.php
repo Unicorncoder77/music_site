@@ -1,12 +1,16 @@
 <?php 
 
+// error handling 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// article class
 class Article{
+    // defining the dbconn class
     private $dbconn = NULL;
 
+    // the construction function
     public function __construct($config) {
         require_once __DIR__ . '/../hiphop_website/private/config.php';
        // global $config;
@@ -20,6 +24,8 @@ class Article{
         $this->dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }
+
+    // deconstruction function
      public function __destruct(){
         if(is_null($this->dbconn)) return;
         $this->dbconn = null;
@@ -32,6 +38,7 @@ class Article{
     // insert into the database 
     // somehow get the publication date to insert into this as well
     // article id isn't needed because it's dynamically added (like the other ones)
+    // allows the user to submit an article
     public function submitArticle($creator_id, $article_title, $article_contents, $category_id){
         $stmt = $this->dbconn->prepare("INSERT INTO articles (creator_id, article_title, article_contents, category_id, pub_date) 
         VALUES (:creator_id, :article_title, :article_contents, :category_id, NOW())");
@@ -44,6 +51,7 @@ class Article{
         ]);
     }
 
+    // fetches all of the article elements
     public function fetchAll(){
         // article.article_id ensures that its the correct table that it's being inserted into
         // can use it with or without if it works with the article.article_id thing then ill keep it
@@ -66,12 +74,31 @@ class Article{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // fetching categories 
     public function fetchCategories() {
         $stmt = $this->dbconn->query("SELECT category_id, category_name FROM categories ORDER BY category_name ASC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // may make it in ascending order perhaps
+    public function topThree(){
+        $stmt = $this->dbconn->query("SELECT article_id, article_title, article_contents, pub_date
+        FROM articles
+        ORDER BY pub_date DESC
+        LIMIT 3");
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getByArticleId($article_id) {
+        $stmt = $this->dbconn->prepare("SELECT article_id, article_title, article_contents 
+        FROM articles 
+        WHERE article_id = :article_id");
+
+        $stmt->execute([':article_id' => $article_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    
 }
 
 

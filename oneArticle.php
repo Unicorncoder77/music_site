@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,17 +8,20 @@ require 'creatorConn.php';
 
 require_once  __DIR__ . '/../hiphop_website/private/config.php';
 
-try {
-    $newArticle = new Article($config);
-    $newCreator = new CreatorAccount();
+$article = new Article($config);
 
-    $allArticles = $newArticle->fetchall();
 
+if (!isset($_GET['id'])){
+    die ("No Article Selected :(");
 }
-catch (PDOException $e) {
-    echo "<pre>PDO Error: " . $e->getMessage() . "</pre>";
-    exit;
+
+$article_id = (int) $_GET['id'];
+$singleArticle = $article->getByArticleId($article_id);
+
+if (!$singleArticle){
+    die("Article not found :(");
 }
+
 
 ?>
 
@@ -28,7 +30,7 @@ catch (PDOException $e) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Articles </title>
+        <title> Article </title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
@@ -40,39 +42,18 @@ catch (PDOException $e) {
             }
         </style>
     </head>
+
     <body>
         <script src="script.js"> </script>
         <div id="header"></div>
-         
-        
-
-        
-        <h1> Welcome to Our Article Site! Read Our Various Articles Below!</h1>
         <div class="article-grid">
-        <?php 
-            foreach ($allArticles as $article):
-                $creator = $newCreator->getCreator($article['creator_id']);
-
-                if (!$creator) {
-                    $penName = "Unknown Author";
-                } 
-                else {
-                    $penName = $creator['creator_penname'];
-                }
-        ?>
         <div class="article-card">
-
-        
         <article>
-            <h2> <?= htmlspecialchars($article['article_title']) ?></h2>
-
-            <p>by <?= htmlspecialchars($penName)?></p>
-            
-            <p><?= nl2br(htmlspecialchars(substr($article['article_contents'], 0, 500)))?></p>
+            <h1><?= htmlspecialchars($singleArticle['article_title']) ?> </h1>
+            <p><?= nl2br(htmlspecialchars($singleArticle['article_contents']))?></p>
         </article>
         </div>
-
-        <?php endforeach ?>
         </div>
+
     </body>
 </html>
