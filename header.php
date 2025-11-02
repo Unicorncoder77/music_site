@@ -5,7 +5,7 @@
                 <a href="index.php">Home</a>
                 <a href="#">About</a>
                 <a href="articles.php">Articles</a>
-                <a href="#">Reviews</a>
+                <a href="review.php">Reviews</a>
                 <a href="#">Contact</a>
                 <?php if (isset($_SESSION['user'])): ?>
                     <a href="dashboard.php">Dashboard </a>

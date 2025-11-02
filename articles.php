@@ -64,11 +64,14 @@ catch (PDOException $e) {
 
         
         <article>
-            <h2> <?= htmlspecialchars($article['article_title']) ?></h2>
-
-            <p>by <?= htmlspecialchars($penName)?></p>
-            
-            <p><?= nl2br(htmlspecialchars(substr($article['article_contents'], 0, 500)))?></p>
+           <h3>
+                    <a href="oneArticle.php?id=<?= $article['article_id'] ?>">
+                        <?= htmlspecialchars($article['article_title']) ?>
+                    </a>
+                </h3>
+                <p> 
+                    <?= nl2br(htmlspecialchars(substr($topArticles['article_contents'], 0, 150)))?>
+                </p>
         </article>
         </div>
 
