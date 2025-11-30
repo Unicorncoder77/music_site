@@ -7,6 +7,7 @@ session_start();
 require __DIR__ . '/../hiphop_website/private/config.php';
 
 require 'loginConn.php';
+//include 'header.php';
 //require 'loginPage.php';
 //require 'userLoginProcess.php';
 
@@ -35,7 +36,7 @@ $userID = $user['user_id'];
     <body>
         <script src="script.js"> </script>
         <div id="header"></div>
-
+<!-- Log in is cooked somehow-->
             <h1 class="userWelcome"> Welcome Back <?php echo htmlspecialchars($_SESSION['user']); ?></h1>
             <hr>
             <h2> Here are some <b> HOT </b> new articles for you: </h2>
@@ -55,6 +56,15 @@ $userID = $user['user_id'];
                     <h3> The Evolution of the 808 Beat </h3>
                 </div>
              </div>
+          </section>
+
+          <h2> Here are some the <b> TOP </b> rated songs: </h2>
+          <section class="review">
+            <div class="article-grid">
+                <div class="article-card">
+                    
+                </div>
+            </div>
           </section>
     </body>
 </html>

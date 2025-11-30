@@ -9,6 +9,7 @@ require __DIR__ . '/../hiphop_website/private/config.php';
 
 require 'creatorConn.php';
 require 'articleConn.php';
+//include 'header.php';
 
 // Should merge creatorConn and loginConn at some point or figure out if it would be the best option
 

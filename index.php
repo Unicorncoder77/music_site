@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 require 'articleConn.php';
 require 'creatorConn.php';
+include 'header.php';
 
 require_once  __DIR__ . '/../hiphop_website/private/config.php';
 

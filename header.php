@@ -1,4 +1,13 @@
+<?php 
+//session_start();
+
+if (session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+?>
+
 <header>
+    
             <h1> The Experience</h1>
 <!-- Navigation bars must be linked properly-->
             <nav class="homeNav" id="navigation-bar">
@@ -10,15 +19,14 @@
                 <?php if (isset($_SESSION['user'])): ?>
                     <a href="dashboard.php">Dashboard </a>
                     <a href="logout.php">Logout</a>
+                <?php elseif(isset($_SESSION['creator'])): ?>
+                    <a href="creatorDashboard.php">Dashboard </a>
+                    <a href="logout.php">Logout</a>
                 <?php else: ?>
                     <a href="loginPage.php">Login</a>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['creator'])): ?>
-                    <a href="creatorDashboard.php">Dashboard </a>
-                    <a href="logout.php">Logout</a>
-               <!-- <?php else: ?>
-                    <a href="loginPage.php">Login</a> -->
-                <?php endif; ?>
+                
+             
                 <div class="search">
 <!-- Add actual action to the form-->
                         <form action="#">

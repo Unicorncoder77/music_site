@@ -131,6 +131,15 @@ class UserAccount {
 
         return password_verify($passwd, $entry['password']);
     }
+
+      public function getUser($user_id){
+        $stmt = $this->dbconn->prepare("SELECT username
+        FROM users
+        WHERE user_id = :user_id");
+
+        $stmt->execute([':user_id' => $user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 

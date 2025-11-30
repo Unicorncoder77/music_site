@@ -18,4 +18,10 @@ $newReview = new Review($config);
 
 $user_id = $_SESSION['user_id'];
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['reviewTitle'])){
+        $title = $_POST['reviewTitle'];
+    }
+}
+
 ?>
